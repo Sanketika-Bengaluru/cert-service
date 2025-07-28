@@ -1,16 +1,19 @@
 FROM sunbird/openjdk-java11-alpine:latest
 MAINTAINER "S M Y ALTAMASH <smy.altamash@gmail.com>"
+USER root
 RUN apk update \
-    && apk add  unzip \
-    && apk add curl \
+    && apk upgrade --no-cache \
+    && apk add --no-cache unzip curl chromium \
+    font-noto-gujarati font-noto-kannada font-noto-avestan font-noto-osage font-noto-kayahli font-noto-oriya font-noto-telugu font-noto-tamil font-noto-bengali font-noto-malayalam font-noto-arabic font-noto-extra \
     && adduser -u 1001 -h /home/sunbird/ -D sunbird \
-    && apk --no-cache add chromium \
-    && mkdir -p /home/sunbird/
-RUN apk add font-noto-gujarati font-noto-kannada font-noto-avestan font-noto-osage font-noto-kayahli font-noto-oriya font-noto-telugu font-noto-tamil font-noto-bengali font-noto-malayalam font-noto-arabic font-noto-extra \
-    && fc-cache -f
+    && mkdir -p /home/sunbird/ \
+    && fc-cache -f \
+    && rm -rf /var/cache/apk/*
+
 ADD ./cert-service-1.2.0-dist.zip /home/sunbird/
-RUN unzip /home/sunbird/cert-service-1.2.0-dist.zip -d /home/sunbird/
-RUN chown -R sunbird:sunbird /home/sunbird
+RUN unzip /home/sunbird/cert-service-1.2.0-dist.zip -d /home/sunbird/ \
+    && chown -R sunbird:sunbird /home/sunbird
+
 USER sunbird
 EXPOSE 9000
 WORKDIR /home/sunbird/
