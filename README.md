@@ -3,6 +3,7 @@ Play, Akka seed project without router implementation.
 
 cert service will run by default on port 9000.
 
+
 ### Build
 
 1. Execute clean install `mvn clean install`
