@@ -3,9 +3,6 @@ Play, Akka seed project without router implementation.
 
 cert service will run by default on port 9000.
 
-> **📋 Migration Notice**: A comprehensive analysis for upgrading Play Framework and migrating from Akka to Apache Pekko is available. See [MIGRATION_SUMMARY.md](./MIGRATION_SUMMARY.md) for executive summary and [MIGRATION_COMPATIBILITY_REPORT.md](./MIGRATION_COMPATIBILITY_REPORT.md) for detailed analysis.
-
-
 ### Build
 
 1. Execute clean install `mvn clean install`
