@@ -99,21 +99,3 @@ License: Now compliant with Apache 2.0 throughout the stack
 Scala 2.11/2.13 Conflict: If you encounter NoClassDefFoundError for scala.collection.GenMap or scala.Serializable, verify dependency tree to ensure no Scala 2.11 artifacts are present. Run mvn dependency:tree and add exclusions for any scala-library or scala-reflect with version 2.11.
 
 Jackson Module: The distribution must include jackson-module-scala_2.13 only. The jackson-module-scala_2.11 dependency is excluded from cert-processor to prevent ServiceLoader conflicts.
-
-## Verification Steps
-
-After the upgrade:
-1. Run mvn clean install to build all modules
-2. Check dependency tree for Scala version conflicts
-3. Create distribution package with mvn play2:dist
-4. Verify only Scala 2.13 dependencies in lib directory
-5. Start the service and check logs for errors
-6. Test health endpoint and basic functionality
-
-## Rollback Plan
-
-If issues occur:
-1. Revert to previous commit before upgrade
-2. Rebuild with mvn clean install
-3. Deploy previous stable version
-4. Document encountered issues for future upgrade attempt
